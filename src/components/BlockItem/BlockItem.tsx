@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Flex, Text, Icon } from '@chakra-ui/react';
+import { Flex, Text, Image } from '@chakra-ui/react';
 
 interface BlockItemProps {
   name: string;
-  icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  icon: string;
   onAddItem: () => void;
 }
 
@@ -25,7 +25,7 @@ const BlockItem: FC<BlockItemProps> = ({
       py='10px'
       onClick={onAddItem}
     >
-      <Icon as={icon} />
+      <Image src={icon} />
       <Text fontSize='xs' color='#252A32'>{name}</Text>
     </Flex>
   )

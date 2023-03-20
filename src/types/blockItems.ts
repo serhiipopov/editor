@@ -1,9 +1,7 @@
-import React from 'react';
-
 export interface IBlockItem {
   name: string;
   type: string;
-  icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  icon: string;
   id: number;
 }
 

@@ -1,34 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { BlockItems } from '../../types/blockItems';
 
-import IconHeadline from '../../icons/Headline/Headline';
-import IconButton from '../../icons/Button/Button';
-import IconParagraph from '../../icons/Paragraph/Paragraph';
-import IconImage from '../../icons/Image/Image';
+import Headline from'../../assets/images/Headline.svg';
+import Paragraph from '../../assets/images/Paragraph.svg';
+import Button from '../../assets/images/Button.svg';
+import Image from '../../assets/images/Image.svg';
 
 const initialState: BlockItems = {
   items: [
     {
       name: 'Headline',
-      icon: IconHeadline,
+      icon: Headline,
       type: 'text',
       id: 1,
     },
     {
-      name: 'Button',
-      icon: IconButton,
-      type: 'button',
+      name: 'Paragraph',
+      icon: Paragraph,
+      type: 'text',
       id: 2,
     },
     {
-      name: 'Paragraph',
-      icon: IconParagraph,
-      type: 'text',
+      name: 'Button',
+      icon: Button,
+      type: 'button',
       id: 3,
     },
     {
       name: 'Image',
-      icon: IconImage,
+      icon: Image,
       type: 'file',
       id: 4
     },

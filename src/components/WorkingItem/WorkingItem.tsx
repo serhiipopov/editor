@@ -1,25 +1,27 @@
 import React, { FC, HTMLInputTypeAttribute, useState } from 'react';
 import {
   Flex,
-  Icon,
+  Image,
   HStack,
   Text,
   Input,
   Box
 } from '@chakra-ui/react';
-
-import ArrowTop from '../../icons/Arrow/ArrowTop';
-import ArrowBottom from '../../icons/Arrow/ArrowBottom';
-import Trash from '../../icons/Trash/Trash';
-import Copy from '../../icons/Copy/Copy';
 import IconButton from '../UI/IconButton/IconButton';
+
+import Copy from '../../assets/images/Copy.svg';
+import Trash from '../../assets/images/Trash.svg';
+import ArrowTop from '../../assets/images/ArrowUp.svg';
+import ArrowBottom from '../../assets/images/ArrowDown.svg';
 
 interface WorkingItemProp {
   name: string;
-  icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  icon: string;
   type: HTMLInputTypeAttribute;
   removeItem: () => void;
   copyItem: () => void;
+  handleUp: () => void;
+  handleDown: () => void;
 }
 
 const WorkingItem: FC<WorkingItemProp> = ({
@@ -27,10 +29,11 @@ const WorkingItem: FC<WorkingItemProp> = ({
   icon,
   type,
   removeItem,
-  copyItem
+  copyItem,
+  handleUp,
+  handleDown
   }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-
   const toggleHandler = () => setIsActive(true);
 
   return (
@@ -63,8 +66,8 @@ const WorkingItem: FC<WorkingItemProp> = ({
             borderTopRightRadius='3px'
             borderTopLeftRadius='3px'
           >
-            <IconButton icon={ArrowBottom} />
-            <IconButton icon={ArrowTop} />
+            <IconButton icon={ArrowBottom} handler={handleDown} />
+            <IconButton icon={ArrowTop} handler={handleUp} />
           </Flex>
           <Flex
             backgroundColor='#449CF4'
@@ -79,7 +82,7 @@ const WorkingItem: FC<WorkingItemProp> = ({
         </HStack>
       }
 
-      <Icon as={icon}/>
+      <Image src={icon} />
       <Text fontSize='xs' color='#252A32'>{name}</Text>
 
       {isActive &&
@@ -88,7 +91,10 @@ const WorkingItem: FC<WorkingItemProp> = ({
           backgroundColor='white'
           w='full'
           borderRadius='2px'
-          boxShadow='0px 64px 64px rgba(211, 214, 215, 0.2), 0px 32px 32px rgba(211, 214, 215, 0.2), 0px 16px 16px rgba(211, 214, 215, 0.2), 0px 4px 4px rgba(211, 214, 215, 0.2), 0px 2px 2px rgba(211, 214, 215, 0.2)'
+          boxShadow='0px 64px 64px rgba(211, 214, 215, 0.2), 0px 32px 32px
+          rgba(211, 214, 215, 0.2), 0px 16px 16px
+          rgba(211, 214, 215, 0.2), 0px 4px 4px
+          rgba(211, 214, 215, 0.2), 0px 2px 2px rgba(211, 214, 215, 0.2)'
         >
           <Input
             type={type}

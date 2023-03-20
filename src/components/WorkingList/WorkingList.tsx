@@ -7,16 +7,20 @@ interface WorkingListProps {
   items: IBlockItem[];
   removeItem: (id: number) => void;
   copyItem: (id: number) => void;
+  handleUp: (i: number) => void;
+  handleDown: (i: number) => void;
 }
 
 const WorkingList: FC<WorkingListProps> = ({
   items,
   removeItem,
-  copyItem ,
+  copyItem,
+  handleUp,
+  handleDown
   }) => {
   return (
     <Stack spacing='15px'>
-      {items?.map((item) => (
+      {items?.map((item, i) => (
         <WorkingItem
           key={item.id}
           icon={item.icon}
@@ -24,6 +28,8 @@ const WorkingList: FC<WorkingListProps> = ({
           type={item.type}
           removeItem={() => removeItem(item.id)}
           copyItem={() => copyItem(item.id)}
+          handleUp={() => handleUp(i)}
+          handleDown={() => handleDown(i)}
         />
       ))}
     </Stack>

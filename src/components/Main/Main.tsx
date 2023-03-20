@@ -1,12 +1,16 @@
-import { FC } from 'react';
+import {FC, useEffect} from 'react';
 import { Box } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import {
+  copyItem, getAllItems,
+  moveDown,
+  moveUp,
+  removeItem
+} from '../../store/workingItems/slice';
 import WorkingList from '../WorkingList/WorkingList';
 
 import SpinnerWrapper from '../UI/Spinner/Spinner';
 import Error from '../UI/Error/Error';
-import {copyItem, removeItem} from '../../store/workingItems/slice';
-import {IBlockItem} from '../../types/blockItems';
 
 const Main: FC = () => {
   const { items, isLoading, error } = useAppSelector(state => state.workingItemsReducer);
@@ -19,6 +23,18 @@ const Main: FC = () => {
   const copyItemHandler = (id: number) => {
     dispatch(copyItem(id))
   }
+
+  const upItemHandler = (i: number) =>  {
+    dispatch(moveUp(i))
+  }
+
+  const downItemHandler = (i: number) =>  {
+    dispatch(moveDown(i))
+  }
+
+  useEffect(() => {
+    dispatch(getAllItems())
+  },[dispatch])
 
   if (isLoading) return <SpinnerWrapper />
   if (error) return <Error title='Not found' />
@@ -33,6 +49,8 @@ const Main: FC = () => {
         items={items}
         removeItem={removeItemHandler}
         copyItem={copyItemHandler}
+        handleUp={upItemHandler}
+        handleDown={downItemHandler}
       />
     </Box>
   )
