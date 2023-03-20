@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import { Container, Divider, Flex } from '@chakra-ui/react';
 
-function App() {
+import Header from './components/UI/Header/Header';
+import Toolbar from './components/Toolbar/Toolbar';
+import Main from './components/Main/Main';
+import Frame from './components/Frame/Frame';
+
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Container
+      padding='0'
+      margin='0'
+      minW='full'
+      minH='full'
+    >
+      <Header />
+      <Flex>
+        <Toolbar />
+        <Divider
+          orientation='vertical'
+          opacity='1'
+          borderWidth='1px'
+          minH='100vh'
+          color='#E4E6F1'
+        />
+        <Main />
+        <Frame />
+      </Flex>
+    </Container>
+  )
 }
 
 export default App;
