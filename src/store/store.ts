@@ -1,6 +1,10 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import blockItemsReducer from './blockItems/slice';
+import workingItemsReducer from './workingItems/slice';
 
 const rootReducer = combineReducers({
+  blockItemsReducer,
+  workingItemsReducer
 })
 
 export const setupStore = () => {

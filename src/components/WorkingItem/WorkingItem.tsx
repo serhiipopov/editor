@@ -1,5 +1,12 @@
-import React, { FC, useState } from 'react';
-import { Flex, Icon, HStack, Text } from '@chakra-ui/react';
+import React, { FC, HTMLInputTypeAttribute, useState } from 'react';
+import {
+  Flex,
+  Icon,
+  HStack,
+  Text,
+  Input,
+  Box
+} from '@chakra-ui/react';
 
 import ArrowTop from '../../icons/Arrow/ArrowTop';
 import ArrowBottom from '../../icons/Arrow/ArrowBottom';
@@ -10,12 +17,21 @@ import IconButton from '../UI/IconButton/IconButton';
 interface WorkingItemProp {
   name: string;
   icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  type: HTMLInputTypeAttribute;
+  removeItem: () => void;
+  copyItem: () => void;
 }
 
-const WorkingItem: FC<WorkingItemProp> = ({ name, icon }) => {
+const WorkingItem: FC<WorkingItemProp> = ({
+  name,
+  icon,
+  type,
+  removeItem,
+  copyItem
+  }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
-  const toggleHandler = () => setIsActive(prevState => !prevState);
+  const toggleHandler = () => setIsActive(true);
 
   return (
     <Flex
@@ -57,14 +73,32 @@ const WorkingItem: FC<WorkingItemProp> = ({ name, icon }) => {
             borderTopRightRadius='3px'
             borderTopLeftRadius='3px'
           >
-            <IconButton icon={Copy} />
-            <IconButton icon={Trash} />
+            <IconButton icon={Copy} handler={copyItem} />
+            <IconButton icon={Trash} handler={removeItem}  />
           </Flex>
         </HStack>
       }
 
-      <Icon as={icon} />
+      <Icon as={icon}/>
       <Text fontSize='xs' color='#252A32'>{name}</Text>
+
+      {isActive &&
+        <Box
+          p='5px'
+          backgroundColor='white'
+          w='full'
+          borderRadius='2px'
+          boxShadow='0px 64px 64px rgba(211, 214, 215, 0.2), 0px 32px 32px rgba(211, 214, 215, 0.2), 0px 16px 16px rgba(211, 214, 215, 0.2), 0px 4px 4px rgba(211, 214, 215, 0.2), 0px 2px 2px rgba(211, 214, 215, 0.2)'
+        >
+          <Input
+            type={type}
+            backgroundColor='white'
+            variant='outline'
+            borderRadius='2px'
+            style={{ height: '28px' }}
+          />
+        </Box>
+      }
     </Flex>
   )
 }

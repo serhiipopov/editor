@@ -1,16 +1,29 @@
 import { FC } from 'react';
 import { Stack } from '@chakra-ui/react';
-import { blockItems } from '../Toolbar/Toolbar';
 import WorkingItem from '../WorkingItem/WorkingItem';
+import { IBlockItem } from '../../types/blockItems';
 
-const WorkingList: FC = () => {
+interface WorkingListProps {
+  items: IBlockItem[];
+  removeItem: (id: number) => void;
+  copyItem: (id: number) => void;
+}
+
+const WorkingList: FC<WorkingListProps> = ({
+  items,
+  removeItem,
+  copyItem ,
+  }) => {
   return (
     <Stack spacing='15px'>
-      {blockItems.map((item) => (
+      {items?.map((item) => (
         <WorkingItem
-          key={item.name}
+          key={item.id}
           icon={item.icon}
           name={item.name}
+          type={item.type}
+          removeItem={() => removeItem(item.id)}
+          copyItem={() => copyItem(item.id)}
         />
       ))}
     </Stack>

@@ -4,9 +4,14 @@ import { Flex, Text, Icon } from '@chakra-ui/react';
 interface BlockItemProps {
   name: string;
   icon: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  onAddItem: () => void;
 }
 
-const BlockItem: FC<BlockItemProps> = ({ name, icon }) => {
+const BlockItem: FC<BlockItemProps> = ({
+  name,
+  icon,
+  onAddItem
+  }) => {
   return (
     <Flex
       width='100px'
@@ -18,6 +23,7 @@ const BlockItem: FC<BlockItemProps> = ({ name, icon }) => {
       gap='10px'
       px='15px'
       py='10px'
+      onClick={onAddItem}
     >
       <Icon as={icon} />
       <Text fontSize='xs' color='#252A32'>{name}</Text>
