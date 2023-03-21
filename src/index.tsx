@@ -15,7 +15,7 @@ root.render(
   <Provider store={store}>
     <DndProvider backend={HTML5Backend}>
       <ChakraProvider>
-        <App/>
+        <App />
       </ChakraProvider>
     </DndProvider>
   </Provider>

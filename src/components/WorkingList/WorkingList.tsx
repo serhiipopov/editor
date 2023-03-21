@@ -1,11 +1,10 @@
-import {FC, useEffect, useState} from 'react';
+import { FC } from 'react';
 import { Stack } from '@chakra-ui/react';
-import WorkingItem from '../WorkingItem/WorkingItem';
+import { useDrop } from 'react-dnd';
+import { addItem } from '../../store/workingItems/slice';
+import { useAppDispatch } from '../../hooks/redux';
 import { IBlockItem } from '../../types/blockItems';
-import {useDrop} from 'react-dnd';
-import {addBlockItems} from '../../store/blockItems/slice';
-import {addItem, copyItem} from '../../store/workingItems/slice';
-import {useAppDispatch} from '../../hooks/redux';
+import WorkingItem from '../WorkingItem/WorkingItem';
 
 interface WorkingListProps {
   items: IBlockItem[];

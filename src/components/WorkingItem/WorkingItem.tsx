@@ -34,7 +34,12 @@ const WorkingItem: FC<WorkingItemProp> = ({
   handleDown
   }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
-  const toggleHandler = () => setIsActive(true);
+
+  const toggleHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLDivElement).nodeName !== 'IMG') {
+      setIsActive(prevState => !prevState)
+    }
+  }
 
   return (
     <Flex
@@ -48,7 +53,7 @@ const WorkingItem: FC<WorkingItemProp> = ({
       gap='10px'
       px='15px'
       py='10px'
-      onClick={toggleHandler}
+      onClick={(e) => toggleHandler(e)}
     >
 
       {isActive &&

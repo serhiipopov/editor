@@ -8,7 +8,7 @@ interface IconButtonProps {
 
 const IconButton: FC<IconButtonProps> = ({ icon, handler }) => {
   return (
-    <Box onClick={handler}>
+    <Box onClick={handler} sx={{ cursor: 'pointer' }}>
       <Image src={icon} />
     </Box>
   )
