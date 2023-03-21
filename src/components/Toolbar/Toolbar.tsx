@@ -7,8 +7,8 @@ import { IBlockItem } from '../../types/blockItems';
 import BlockItem from '../BlockItem/BlockItem';
 
 const Toolbar: FC = () => {
-  const blockItems = useAppSelector(state => state.blockItemsReducer.items);
   const dispatch = useAppDispatch();
+  const blockItems = useAppSelector(state => state.blockItemsReducer.items);
 
   const addToMainItemHandler = (item: IBlockItem) => {
     const newItem = {
@@ -28,8 +28,7 @@ const Toolbar: FC = () => {
         {blockItems?.map((item) => (
           <GridItem key={item.id}>
             <BlockItem
-              name={item.name}
-              icon={item.icon}
+              item={item}
               onAddItem={() => addToMainItemHandler(item)}
             />
           </GridItem>

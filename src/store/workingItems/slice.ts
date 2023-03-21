@@ -12,9 +12,6 @@ export const workingItemsSlice = createSlice({
   name: 'workingItems',
   initialState,
   reducers: {
-    getAllItems(state) {
-      state.items = [...state.items]
-    },
     addItem(state, action: PayloadAction<IBlockItem>) {
       state.items = [...state.items, { ...action.payload }]
       state.error = ''
@@ -26,7 +23,7 @@ export const workingItemsSlice = createSlice({
     copyItem(state, action: PayloadAction<number>) {
       const itemToCopy = state.items.find(item => item.id === action.payload)
       if (itemToCopy) {
-        state.items = [...state.items, {...itemToCopy, id: Date.now()}]
+        state.items = [...state.items, { ...itemToCopy, id: Date.now() }]
       }
     },
     moveUp(state, action: PayloadAction<number>) {
@@ -52,7 +49,6 @@ export const workingItemsSlice = createSlice({
 })
 
 export const {
-  getAllItems,
   addItem,
   removeItem,
   copyItem,

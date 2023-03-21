@@ -23,7 +23,7 @@ const initialState: BlockItems = {
     {
       name: 'Button',
       icon: Button,
-      type: 'button',
+      type: 'text',
       id: 3,
     },
     {

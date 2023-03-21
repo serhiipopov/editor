@@ -1,16 +1,17 @@
-import {FC, useEffect} from 'react';
+import { FC } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  copyItem, getAllItems,
+  copyItem,
   moveDown,
   moveUp,
   removeItem
 } from '../../store/workingItems/slice';
-import WorkingList from '../WorkingList/WorkingList';
 
+import WorkingList from '../WorkingList/WorkingList';
 import SpinnerWrapper from '../UI/Spinner/Spinner';
 import Error from '../UI/Error/Error';
+import TextField from '../UI/TextFiled/TextField';
 
 const Main: FC = () => {
   const { items, isLoading, error } = useAppSelector(state => state.workingItemsReducer);
@@ -32,10 +33,6 @@ const Main: FC = () => {
     dispatch(moveDown(i))
   }
 
-  useEffect(() => {
-    dispatch(getAllItems())
-  },[dispatch])
-
   if (isLoading) return <SpinnerWrapper />
   if (error) return <Error title='Not found' />
 
@@ -44,11 +41,13 @@ const Main: FC = () => {
       backgroundColor='#F5F5FC'
       paddingX='30px'
       paddingY='25px'
+      minW='37%'
     >
+      { !items.length && <TextField text='The list is clean' /> }
       <WorkingList
         items={items}
         removeItem={removeItemHandler}
-        copyItem={copyItemHandler}
+        copyItemHandler={copyItemHandler}
         handleUp={upItemHandler}
         handleDown={downItemHandler}
       />

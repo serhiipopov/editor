@@ -38,8 +38,7 @@ const WorkingItem: FC<WorkingItemProp> = ({
 
   return (
     <Flex
-      as='button'
-      width='478px'
+      width='full'
       flexDirection='column'
       justifyContent='center'
       alignItems='center'
@@ -90,6 +89,7 @@ const WorkingItem: FC<WorkingItemProp> = ({
           p='5px'
           backgroundColor='white'
           w='full'
+          h='38px'
           borderRadius='2px'
           boxShadow='0px 64px 64px rgba(211, 214, 215, 0.2), 0px 32px 32px
           rgba(211, 214, 215, 0.2), 0px 16px 16px
@@ -98,10 +98,21 @@ const WorkingItem: FC<WorkingItemProp> = ({
         >
           <Input
             type={type}
+            required
             backgroundColor='white'
             variant='outline'
             borderRadius='2px'
-            style={{ height: '28px' }}
+            onKeyPress={(event) => {
+              if (event.key === 'Enter') {
+                console.log('Enter')
+              }
+            }}
+            style={{ height: '28px', minHeight: 'full' }}
+            sx={{
+              '::-webkit-file-upload-button': {
+                display: 'none'
+            }
+          }}
           />
         </Box>
       }
