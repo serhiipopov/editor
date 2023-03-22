@@ -3,14 +3,12 @@ import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import blockItemsReducer from './blockItems/slice';
 import workingItemsReducer from './workingItems/slice';
-import frameReducer from './frameItems/slice';
 
 export let store: Store<any, AnyAction>;
 
 const rootReducer = combineReducers({
   blockItemsReducer,
   workingItemsReducer,
-  frameReducer
 })
 
 const persistConfig = {

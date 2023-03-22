@@ -2,16 +2,10 @@ import React, { FC } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
-  addIFrameItem,
-  moveDownFrameItem,
-  moveUpFrameItem,
-  removeFrameItem
-} from '../../store/frameItems/slice';
-import {
   copyItem,
   moveDown,
   moveUp,
-  removeItem
+  removeItem, updateItem
 } from '../../store/workingItems/slice';
 
 import WorkingList from '../WorkingList/WorkingList';
@@ -26,7 +20,6 @@ const Main: FC = () => {
 
   const removeItemHandler = (id: number) => {
     dispatch(removeItem(id));
-    dispatch(removeFrameItem(id));
   }
 
   const copyItemHandler = (id: number) => {
@@ -35,12 +28,10 @@ const Main: FC = () => {
 
   const upItemHandler = (i: number) =>  {
     dispatch(moveUp(i));
-    dispatch(moveUpFrameItem(i));
   }
 
   const downItemHandler = (i: number) =>  {
     dispatch(moveDown(i));
-    dispatch(moveDownFrameItem(i));
   }
 
   const enterHandler = (event: React.KeyboardEvent<HTMLInputElement>, item: IBlockItem) => {
@@ -51,7 +42,7 @@ const Main: FC = () => {
         ...item,
         title: target.value,
       }
-      dispatch(addIFrameItem(newItem));
+      dispatch(updateItem(newItem));
     }
   }
 
@@ -68,7 +59,7 @@ const Main: FC = () => {
         ...item,
         title: reader.result,
       }
-      dispatch(addIFrameItem(newItem));
+      dispatch(updateItem(newItem));
     }
     reader.readAsDataURL(file);
   }

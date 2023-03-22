@@ -17,6 +17,14 @@ export const workingItemsSlice = createSlice({
       state.error = ''
       state.isLoading = false
     },
+    updateItem(state, action: PayloadAction<IBlockItem>) {
+      state.items = state.items.map(item => {
+        if (item.id === action.payload.id) {
+          return action.payload
+        }
+      return item
+      })
+    },
     removeItem(state, action: PayloadAction<number>) {
       state.items = state.items.filter(item => item.id !== action.payload)
     },
@@ -39,9 +47,9 @@ export const workingItemsSlice = createSlice({
       const index = action.payload
       const lastItem = state.items.length - 1
       if (index < lastItem) {
-        const newItems = [...state.items];
-        const selectedItem = newItems.splice(index, 1)[0];
-        newItems.splice(index + 1, 0, selectedItem);
+        const newItems = [...state.items]
+        const selectedItem = newItems.splice(index, 1)[0]
+        newItems.splice(index + 1, 0, selectedItem)
         state.items = [...newItems]
       }
     }
@@ -50,6 +58,7 @@ export const workingItemsSlice = createSlice({
 
 export const {
   addItem,
+  updateItem,
   removeItem,
   copyItem,
   moveUp,
