@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import blockItemsReducer from './blockItems/slice';
 import workingItemsReducer from './workingItems/slice';
+import frameReducer from './frame/slice';
 
 const rootReducer = combineReducers({
   blockItemsReducer,
-  workingItemsReducer
+  workingItemsReducer,
+  frameReducer
 })
 
 export const setupStore = () => {

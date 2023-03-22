@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { Stack } from '@chakra-ui/react';
 import { useDrop } from 'react-dnd';
 import { addItem } from '../../store/workingItems/slice';
@@ -12,6 +12,8 @@ interface WorkingListProps {
   copyItemHandler: (id: number) => void;
   handleUp: (i: number) => void;
   handleDown: (i: number) => void;
+  inputFileHandler: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
+  enterHandler: (e: React.KeyboardEvent<HTMLInputElement>, name: string) => void;
 }
 
 const WorkingList: FC<WorkingListProps> = ({
@@ -20,6 +22,8 @@ const WorkingList: FC<WorkingListProps> = ({
   copyItemHandler,
   handleUp,
   handleDown,
+  inputFileHandler,
+  enterHandler,
   }) => {
   const dispatch = useAppDispatch();
 
@@ -45,6 +49,8 @@ const WorkingList: FC<WorkingListProps> = ({
           copyItem={() => copyItemHandler(item.id)}
           handleUp={() => handleUp(i)}
           handleDown={() => handleDown(i)}
+          inputEnterHandler={(e) => enterHandler(e, item.name)}
+          inputFileHandler={(e) => inputFileHandler(e, item.name)}
         />
       ))}
     </Stack>

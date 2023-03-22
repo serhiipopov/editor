@@ -22,6 +22,8 @@ interface WorkingItemProp {
   copyItem: () => void;
   handleUp: () => void;
   handleDown: () => void;
+  inputFileHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  inputEnterHandler: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const WorkingItem: FC<WorkingItemProp> = ({
@@ -31,12 +33,15 @@ const WorkingItem: FC<WorkingItemProp> = ({
   removeItem,
   copyItem,
   handleUp,
-  handleDown
+  handleDown,
+  inputFileHandler,
+  inputEnterHandler
   }) => {
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const toggleHandler = (e: React.MouseEvent<HTMLDivElement>) => {
-    if ((e.target as HTMLDivElement).nodeName !== 'IMG') {
+    const target = e.target as HTMLDivElement;
+    if (target.nodeName !== 'IMG' && target.nodeName !== 'INPUT') {
       setIsActive(prevState => !prevState)
     }
   }
@@ -107,11 +112,8 @@ const WorkingItem: FC<WorkingItemProp> = ({
             backgroundColor='white'
             variant='outline'
             borderRadius='2px'
-            onKeyPress={(event) => {
-              if (event.key === 'Enter') {
-                console.log('Enter')
-              }
-            }}
+            onChange={type ==='file' ? inputFileHandler : () => {}}
+            onKeyPress={type !=='file' ? inputEnterHandler : () => {}}
             style={{ height: '28px', minHeight: 'full' }}
             sx={{
               '::-webkit-file-upload-button': {
