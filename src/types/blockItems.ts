@@ -1,8 +1,9 @@
 export interface IBlockItem {
+  id: number;
+  title?: string | ArrayBuffer | null;
   name: string;
   type: string;
   icon: string;
-  id: number;
 }
 
 export interface BlockItems {

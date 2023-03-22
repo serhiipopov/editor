@@ -1,9 +1,5 @@
-export interface FrameItem {
-  id: number;
-  name: string | ArrayBuffer | null;
-  type: string;
-}
+import { IBlockItem } from './blockItems';
 
 export interface FrameState {
-  frameItems: FrameItem[];
+  frameItems: IBlockItem[];
 }

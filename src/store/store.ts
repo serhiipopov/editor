@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import blockItemsReducer from './blockItems/slice';
 import workingItemsReducer from './workingItems/slice';
-import frameReducer from './frame/slice';
+import frameReducer from './frameItems/slice';
 
 const rootReducer = combineReducers({
   blockItemsReducer,

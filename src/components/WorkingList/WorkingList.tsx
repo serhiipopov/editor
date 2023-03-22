@@ -12,8 +12,8 @@ interface WorkingListProps {
   copyItemHandler: (id: number) => void;
   handleUp: (i: number) => void;
   handleDown: (i: number) => void;
-  inputFileHandler: (e: React.ChangeEvent<HTMLInputElement>, name: string) => void;
-  enterHandler: (e: React.KeyboardEvent<HTMLInputElement>, name: string) => void;
+  inputFileHandler: (e: React.ChangeEvent<HTMLInputElement>, item: IBlockItem) => void;
+  enterHandler: (e: React.KeyboardEvent<HTMLInputElement>, item: IBlockItem) => void;
 }
 
 const WorkingList: FC<WorkingListProps> = ({
@@ -49,8 +49,8 @@ const WorkingList: FC<WorkingListProps> = ({
           copyItem={() => copyItemHandler(item.id)}
           handleUp={() => handleUp(i)}
           handleDown={() => handleDown(i)}
-          inputEnterHandler={(e) => enterHandler(e, item.name)}
-          inputFileHandler={(e) => inputFileHandler(e, item.name)}
+          inputEnterHandler={(e) => enterHandler(e, item)}
+          inputFileHandler={(e) => inputFileHandler(e, item)}
         />
       ))}
     </Stack>

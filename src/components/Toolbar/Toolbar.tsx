@@ -3,8 +3,8 @@ import { Box, Grid, GridItem } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { addBlockItems } from '../../store/blockItems/slice';
 import { addItem } from '../../store/workingItems/slice';
-import { IBlockItem } from '../../types/blockItems';
 import BlockItem from '../BlockItem/BlockItem';
+import { IBlockItem } from '../../types/blockItems';
 
 const Toolbar: FC = () => {
   const dispatch = useAppDispatch();

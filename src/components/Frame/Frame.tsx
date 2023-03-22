@@ -16,12 +16,12 @@ const Frame: FC = () => {
     <Box px='46px' py='30px' w='54%'>
       <Stack spacing='30px'>
         {frameItems?.map((item) => {
-          if (item.type === 'Image') {
+          if (item.name === 'Image') {
 
             return (
               <Image
                 key={item.id}
-                src={item.name as string}
+                src={item.title as string}
                 borderRadius='5px'
                 w='full'
                 h='230px'
@@ -30,7 +30,7 @@ const Frame: FC = () => {
               />
             )
           }
-          if (item.type === 'Headline') {
+          if (item.name === 'Headline') {
 
             return (
               <Center key={item.id}>
@@ -41,13 +41,13 @@ const Frame: FC = () => {
                   color='#252A32'
                 >
                   <>
-                    {item.name}
+                    {item.title}
                   </>
                 </Text>
               </Center>
             )
           }
-          if (item.type === 'Paragraph') {
+          if (item.name === 'Paragraph') {
 
             return (
               <Text
@@ -59,12 +59,12 @@ const Frame: FC = () => {
                 color='#97AACD'
               >
                 <>
-                  {item.name}
+                  {item.title}
                 </>
               </Text>
             )
           }
-          if (item.type === 'Button') {
+          if (item.name === 'Button') {
 
             return (
               <Center key={item.id}>
@@ -78,7 +78,7 @@ const Frame: FC = () => {
                   fontWeight='medium'
                 >
                   <>
-                    {item.name}
+                    {item.title}
                   </>
                 </Button>
               </Center>
