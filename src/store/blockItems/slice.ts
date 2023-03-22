@@ -43,7 +43,7 @@ export const blockItemsSlice = createSlice({
       state.items = [...state.items]
     }
   }
-})
+});
 
 export const { addBlockItems } = blockItemsSlice.actions;
 

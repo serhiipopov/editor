@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { Center, Spinner } from '@chakra-ui/react';
+import { Box, Spinner } from '@chakra-ui/react';
 
 const SpinnerWrapper: FC = () => {
   return (
-    <Center>
+    <Box>
       <Spinner
         thickness='4px'
         speed='0.65s'
@@ -11,7 +11,7 @@ const SpinnerWrapper: FC = () => {
         color='grey.500'
         size='xl'
       />
-    </Center>
+    </Box>
   )
 }
 

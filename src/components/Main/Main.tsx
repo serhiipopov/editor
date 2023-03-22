@@ -84,7 +84,7 @@ const Main: FC = () => {
       minW='37%'
     >
 
-      { !items.length && <TextField text='The list is clean' /> }
+      { !items?.length && <TextField text='The list is clean' /> }
 
       <WorkingList
         items={items}

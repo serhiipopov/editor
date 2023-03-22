@@ -11,7 +11,7 @@ const frameSlice = createSlice({
   initialState,
   reducers: {
     addIFrameItem(state, action: PayloadAction<IBlockItem>) {
-      state.frameItems = [ ...state.frameItems, { ...action.payload }]
+      state.frameItems = [...state.frameItems, { ...action.payload }]
     },
     removeFrameItem(state, action: PayloadAction<number>) {
       state.frameItems = state.frameItems.filter(item => item.id !== action.payload)
@@ -36,7 +36,7 @@ const frameSlice = createSlice({
       }
     }
   }
-})
+});
 
 export const {
   addIFrameItem,

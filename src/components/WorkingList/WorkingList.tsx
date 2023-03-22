@@ -41,12 +41,12 @@ const WorkingList: FC<WorkingListProps> = ({
     <Stack spacing='15px' h='full' ref={drop}>
       {items?.map((item, i) => (
         <WorkingItem
-          key={item.id}
-          icon={item.icon}
-          name={item.name}
-          type={item.type}
-          removeItem={() => removeItem(item.id)}
-          copyItem={() => copyItemHandler(item.id)}
+          key={item?.id}
+          icon={item?.icon}
+          name={item?.name}
+          type={item?.type}
+          removeItem={() => removeItem(item?.id)}
+          copyItem={() => copyItemHandler(item?.id)}
           handleUp={() => handleUp(i)}
           handleDown={() => handleDown(i)}
           inputEnterHandler={(e) => enterHandler(e, item)}
