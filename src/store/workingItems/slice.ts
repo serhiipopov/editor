@@ -1,6 +1,7 @@
 import { WorkingItemsState } from '../../types/workingItems';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IBlockItem } from '../../types/blockItems';
+import { setStateToLocalStorage } from '../../helpers/localStorage';
 
 const initialState: WorkingItemsState = {
   items: [],
@@ -12,10 +13,14 @@ export const workingItemsSlice = createSlice({
   name: 'workingItems',
   initialState,
   reducers: {
+    getAll(state, action: PayloadAction<any>) {
+      state.items = action.payload;
+    },
     addItem(state, action: PayloadAction<IBlockItem>) {
       state.items = [...state.items, { ...action.payload }]
       state.error = ''
       state.isLoading = false
+      setStateToLocalStorage(state.items, 'workingItems')
     },
     updateItem(state, action: PayloadAction<IBlockItem>) {
       state.items = state.items.map(item => {
@@ -24,15 +29,18 @@ export const workingItemsSlice = createSlice({
         }
       return item
       })
+      setStateToLocalStorage(state.items, 'workingItems')
     },
     removeItem(state, action: PayloadAction<number>) {
       state.items = state.items.filter(item => item.id !== action.payload)
+      setStateToLocalStorage(state.items, 'workingItems')
     },
     copyItem(state, action: PayloadAction<number>) {
       const itemToCopy = state.items.find(item => item.id === action.payload)
       if (itemToCopy) {
         state.items = [...state.items, { ...itemToCopy, id: Date.now() }]
       }
+      setStateToLocalStorage(state.items, 'workingItems')
     },
     moveUp(state, action: PayloadAction<number>) {
       const index = action.payload
@@ -42,6 +50,7 @@ export const workingItemsSlice = createSlice({
         newState.splice(index - 1, 0, selectedItem)
         state.items = [...newState]
       }
+      setStateToLocalStorage(state.items, 'workingItems')
     },
     moveDown(state, action: PayloadAction<number>) {
       const index = action.payload
@@ -52,11 +61,13 @@ export const workingItemsSlice = createSlice({
         newItems.splice(index + 1, 0, selectedItem)
         state.items = [...newItems]
       }
+      setStateToLocalStorage(state.items, 'workingItems')
     }
   }
 });
 
 export const {
+  getAll,
   addItem,
   updateItem,
   removeItem,

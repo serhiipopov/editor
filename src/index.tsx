@@ -3,8 +3,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Provider } from 'react-redux';
 import { ChakraProvider } from '@chakra-ui/react';
-import { persist, store } from './store/store';
-import { PersistGate } from 'redux-persist/lib/integration/react';
+import { store } from './store/store';
 import App from './App';
 
 const root = ReactDOM.createRoot(
@@ -12,13 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persist}>
-      <DndProvider backend={HTML5Backend}>
-        <ChakraProvider>
-          <App />
-        </ChakraProvider>
-      </DndProvider>
-    </PersistGate>
+    <DndProvider backend={HTML5Backend}>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
+    </DndProvider>
   </Provider>
 );
 

@@ -1,12 +1,15 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
   copyItem,
+  getAll,
   moveDown,
   moveUp,
-  removeItem, updateItem
+  removeItem,
+  updateItem
 } from '../../store/workingItems/slice';
+import { getStateFromLocalStorage } from '../../helpers/localStorage';
 
 import WorkingList from '../WorkingList/WorkingList';
 import SpinnerWrapper from '../UI/Spinner/Spinner';
@@ -64,6 +67,14 @@ const Main: FC = () => {
     reader.readAsDataURL(file);
   }
 
+  const storedFrameItems = getStateFromLocalStorage('workingItems');
+
+  useEffect(() => {
+    if (storedFrameItems !== undefined) {
+      dispatch(getAll(storedFrameItems));
+    }
+  }, [dispatch])
+
   if (isLoading) return <SpinnerWrapper />
   if (error) return <Error title='Not found' />
 
@@ -78,7 +89,7 @@ const Main: FC = () => {
       { !items?.length && <TextField text='The list is clean' /> }
 
       <WorkingList
-        items={items}
+        items={storedFrameItems}
         removeItem={removeItemHandler}
         copyItemHandler={copyItemHandler}
         handleUp={upItemHandler}
